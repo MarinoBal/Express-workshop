@@ -1,0 +1,20 @@
+{
+  "name": "express-workshop",
+  "version": "1.0.0",
+  "description": "Taller NodeJS-2025",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "api",
+    "rest",
+    "express",
+    "Nodejs"
+  ],
+  "author": "Marino Bal",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
