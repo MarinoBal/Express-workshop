@@ -1,28 +1,23 @@
 const express = require('express');
 const app = express();
-
-/* verbos http
-GET: obtener
-POST: crear
-PUT: actualizar
-DELETE: eliminar
-PATCH: actualizar una parte
- 
-*/
+const {pokemon} = require('./pokedex.json');
 
 app.get("/", (req, res, next) => {
     res.status(200);
-    res.send("Bienvenido ");
+    res.send("Bienvenido al pokedex");
 
 });
 
-app.get("/:name", (req, res, next) => {
-    console.log(req.params.name);
+app.get("/pokemon", (req, res, next) => {
     res.status(200);
-    res.send("Bienvenido " + req.params.name);
+    res.send(pokemon);
 
 });
 
+app.get("/pokemon/:id", (req, res, next) => {
+    res.status(200);
+    res.send (pokemon[req.params.id - 1]);
+});
 
 app.listen(process.env.PORT || 3000, () => {
     console.log('Servidor corriendo  en puerto 3000...');
