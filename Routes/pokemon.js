@@ -1,7 +1,6 @@
 const express = require("express");
 const pokemon = express.Router();
 const db = require('../config/database');
-
 // INSERTAR POKÉMON
 pokemon.post("/", async (req, res, next) => {
   const { pok_name, pok_height, pok_weight, pok_base_experience } = req.body;
@@ -55,7 +54,6 @@ pokemon.delete("/:id", async (req, res, next) => {
   });
 });
 
-
 //put
 pokemon.put("/:id", async (req, res, next) => {
   const id = req.params.id;
@@ -93,7 +91,6 @@ pokemon.put("/:id", async (req, res, next) => {
   });
 });
 
-
 //patch
 pokemon.patch("/:id", async (req, res, next) => {
   const id = req.params.id;
@@ -119,7 +116,6 @@ pokemon.patch("/:id", async (req, res, next) => {
 
   return res.status(400).json({ code: 400, message: "Faltan datos obligatorios" });
 });
-
 
 // OBTENER TODOS LOS POKÉMON
 pokemon.get("/", async (req, res, next) => {
