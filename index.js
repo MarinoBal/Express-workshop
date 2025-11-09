@@ -1,22 +1,28 @@
-
+//dependencias
 const express = require('express');
 const morgan = require('morgan');
 const app = express();
+//rutas
 const  pokemon  = require('./Routes/Pokemon');
 const user = require('./Routes/User');
+//middleware
+const auth = require ('./middleware/auth');
+const notFound = require ('./middleware/notFound');
+const index = require ('./middleware/index');
 
 app.use(morgan('dev'));
 app.use(express.json());
 app.use (express.urlencoded({ extended: true })); 
 
-app.get("/", (req, res, next) => res.status(200).json({ code: 1, message: "Bienvenido a la API de Pokémon" }));
+app.get("/", index);
 
-app.use("/pokemon", pokemon);
 app.use("/user", user)
 
-app.use((req, res, next) => {
-  return res.status(404).json({ code: 404, message: "No se encontró la ruta" });
-});
+app.use(auth);
+
+app.use("/pokemon", pokemon);
+
+app.use(notFound);
 
 
 app.listen(process.env.PORT || 3000, () => {
